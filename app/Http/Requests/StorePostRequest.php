@@ -31,14 +31,3 @@ class StorePostRequest extends FormRequest
     }
 
 }
-
-
-
-
-Schema::create('posts', function (Blueprint $table) {
-    $table->id();
-    $table->string("title", 100)->unique();
-    $table->text("content");
-    $table->string("image", 255)->nullable();
-    $table->timestamps();
-});
