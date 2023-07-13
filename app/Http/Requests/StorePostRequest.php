@@ -13,7 +13,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,21 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "title" => "required|min:3|max:100",
+            "content" => "max:65435",
+            "image" => "url|max:255",
         ];
     }
+
 }
+
+
+
+
+Schema::create('posts', function (Blueprint $table) {
+    $table->id();
+    $table->string("title", 100)->unique();
+    $table->text("content");
+    $table->string("image", 255)->nullable();
+    $table->timestamps();
+});
